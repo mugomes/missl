@@ -2,9 +2,13 @@
 
 Crie certificados SSL para servidor Apache para testes de scripts em ambiente local no Debian/Ubuntu.
 
-## Information
+## Informação
 
-- [Page MISSL](https://www.mestredainfo.com.br/p/missl.html)
+- [Página MISSL](https://www.mestredainfo.com.br/2025/05/missl.html)
+
+## Apoie o Projeto
+
+- [Apoia.se](https://apoia.se/mestredainfo)
 
 ## License
 
