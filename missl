@@ -30,7 +30,11 @@ while true; do
 	echo "7. Criar um subdominio"
 	echo "8. Remover subdominio"
 	echo ""
-    echo "9. Sair"
+	echo "9. Listar Certificados do Chrome/Chromium"
+	echo "10. Ativar SSL no Chrome/Chromium"
+	echo "11. Remover SSL no Chrome/Chromium"
+	echo ""
+    echo "12. Sair"
     echo "-------------------------------- /MISSL --------------------------------"
 	echo ""
 	
@@ -155,7 +159,19 @@ EOF
 			rm -rf /tmp/missl/$nomesubdominio/
 			echo "Subdominio removido com sucesso!"
 			;;
-        9)
+		9)
+			certutil -d sql:$HOME/.pki/nssdb -L
+			echo ""
+			;;
+		10)
+			read -p "Digite o nome do subdominio: " nomesubdominio
+			certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n "$nomesubdominio" -i /tmp/missl/$nomesubdominio/$nomesubdominio.server.pem
+			;;
+		11)
+			read -p "Digite o nickname do certificado: " nomesubdominio
+			certutil -d sql:$HOME/.pki/nssdb -D -n "$nomesubdominio"
+			;;
+        12)
             echo "Saindo..."
             exit 0
             ;;
@@ -164,3 +180,6 @@ EOF
             ;;
     esac
 done
+
+#sudo apt install libnss3-tools
+
