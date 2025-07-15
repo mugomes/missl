@@ -3,20 +3,15 @@
 # Copyright (C) 2025 Murilo Gomes Julio
 # SPDX-License-Identifier: GPL-2.0-only
 
-# Mestre da Info
-# Site: https://www.mestredainfo.com.br
-
-# Apoie o Projeto
-# Apoia.se: https://apoia.se/mestredainfo
+# Site: https://www.mugomes.com.br
 
 while true; do
-	echo "Script desenvolvido pelo Mestre da Info"
-	echo "Site: https://www.mestredainfo.com.br"
+	echo "Script desenvolvido por Murilo Gomes"
+	echo "Site: https://www.mugomes.com.br"
 	echo ""
-	echo "Apoie o Projeto"
-	echo "Apoia.se: https://apoia.se/mestredainfo"
+	echo "Assinantes: https://www.mugomes.com.br/p/assinantes.html"
 	echo ""
-	echo "-------------------------------- MISSL --------------------------------"
+	echo "-------------------------------- MiSSL --------------------------------"
     echo "Selecione uma opção:"
     echo "1. Iniciar o servidor Apache2"
     echo "2. Iniciar o servidor MariaDB"
@@ -35,7 +30,7 @@ while true; do
 	echo "11. Remover SSL no Chrome/Chromium"
 	echo ""
     echo "12. Sair"
-    echo "-------------------------------- /MISSL --------------------------------"
+    echo "-------------------------------- /MiSSL --------------------------------"
 	echo ""
 	
     read -p "Opção: " option
@@ -160,16 +155,30 @@ EOF
 			echo "Subdominio removido com sucesso!"
 			;;
 		9)
-			certutil -d sql:$HOME/.pki/nssdb -L
+			if snap list | grep -q '^chromium\s'; then
+				certutil -d sql:$HOME/snap/chromium/current/.pki/nssdb -L
+			else
+				certutil -d sql:$HOME/.pki/nssdb -L
+			fi
 			echo ""
 			;;
 		10)
 			read -p "Digite o nome do subdominio: " nomesubdominio
-			certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n "$nomesubdominio" -i /tmp/missl/$nomesubdominio/$nomesubdominio.server.pem
+			
+			if snap list | grep -q '^chromium\s'; then
+				certutil -d sql:$HOME/snap/chromium/current/.pki/nssdb -A -t "C,," -n "$nomesubdominio" -i /tmp/missl/$nomesubdominio/$nomesubdominio.server.pem
+			else
+				certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n "$nomesubdominio" -i /tmp/missl/$nomesubdominio/$nomesubdominio.server.pem
+			fi
 			;;
 		11)
 			read -p "Digite o nickname do certificado: " nomesubdominio
-			certutil -d sql:$HOME/.pki/nssdb -D -n "$nomesubdominio"
+			
+			if snap list | grep -q '^chromium\s'; then
+				certutil -d sql:$HOME/snap/chromium/current/.pki/nssdb -D -n "$nomesubdominio"
+			else
+				certutil -d sql:$HOME/.pki/nssdb -D -n "$nomesubdominio"
+			fi
 			;;
         12)
             echo "Saindo..."
