@@ -114,7 +114,7 @@ openssl x509 -req -sha256 -days 1024 -in $nomesubdominio.localhost.csr -CA $nome
                 Require all granted
         </Directory>
 
-        ErrorLog \${APACHE_LOG_DIR}/error.log
+        ErrorLog ${HOME}/$nomepastaprojetos/$nomesubdominio/error.log
         CustomLog \${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 
@@ -133,7 +133,7 @@ openssl x509 -req -sha256 -days 1024 -in $nomesubdominio.localhost.csr -CA $nome
     SSLCertificateFile /etc/apache2/ssl/$nomesubdominio.localhost.crt
     SSLCertificateKeyFile /etc/apache2/ssl/$nomesubdominio.localhost.key
 
-    ErrorLog \${APACHE_LOG_DIR}/error.log
+    ErrorLog ${HOME}/$nomepastaprojetos/$nomesubdominio/error.log
     CustomLog \${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 EOF
