@@ -1,80 +1,77 @@
-#!/usr/bin/env php
 <?php
-# Copyright (C) 2025 Murilo Gomes Julio
+# Copyright (C) 2025-2026 Murilo Gomes Julio
 # SPDX-License-Identifier: GPL-2.0-only
 
-# Site: https://www.mugomes.com.br
+# Site: https://mugomes.github.io
 
-function input($msg) {
+function input(string $msg): string {
     echo $msg;
     return trim(fgets(STDIN));
 }
 
 while (true) {
+    echo 'Script desenvolvido por Murilo Gomes' . PHP_EOL;
+    echo 'Site: https://mugomes.github.io' . PHP_EOL . PHP_EOL;
+    echo 'Apoie: https://mugomes.github.io/apoie.html' . PHP_EOL . PHP_EOL;
 
-    echo "Script desenvolvido por Murilo Gomes\n";
-    echo "Site: https://www.mugomes.com.br\n\n";
-    echo "Apoie: https://www.mugomes.com.br/apoie.html\n\n";
+    echo '-------------------------------- MiSSL --------------------------------' . PHP_EOL;
+    echo 'Selecione uma opção:' . PHP_EOL;
+    echo '1. Iniciar o servidor Apache2' . PHP_EOL;
+    echo '2. Iniciar o servidor MariaDB' . PHP_EOL . PHP_EOL;
+    echo '3. Reiniciar o servidor Apache2' . PHP_EOL;
+    echo '4. Reiniciar o servidor MariaDB' . PHP_EOL . PHP_EOL;
+    echo '5. Parar o servidor Apache2' . PHP_EOL;
+    echo '6. Parar o servidor MariaDB' . PHP_EOL . PHP_EOL;
+    echo '7. Criar um subdomínio' . PHP_EOL;
+    echo '8. Remover subdomínio' . PHP_EOL . PHP_EOL;
+    echo '9. Listar Certificados do Chrome/Chromium' . PHP_EOL;
+    echo '10. Ativar SSL no Chrome/Chromium' . PHP_EOL;
+    echo '11. Remover SSL no Chrome/Chromium' . PHP_EOL . PHP_EOL;
+    echo '12. Sair' . PHP_EOL;
+    echo '-------------------------------- /MiSSL --------------------------------' . PHP_EOL . PHP_EOL;
 
-    echo "-------------------------------- MiSSL --------------------------------\n";
-    echo "Selecione uma opção:\n";
-    echo "1. Iniciar o servidor Apache2\n";
-    echo "2. Iniciar o servidor MariaDB\n\n";
-    echo "3. Reiniciar o servidor Apache2\n";
-    echo "4. Reiniciar o servidor MariaDB\n\n";
-    echo "5. Parar o servidor Apache2\n";
-    echo "6. Parar o servidor MariaDB\n\n";
-    echo "7. Criar um subdomínio\n";
-    echo "8. Remover subdomínio\n\n";
-    echo "9. Listar Certificados do Chrome/Chromium\n";
-    echo "10. Ativar SSL no Chrome/Chromium\n";
-    echo "11. Remover SSL no Chrome/Chromium\n\n";
-    echo "12. Sair\n";
-    echo "-------------------------------- /MiSSL --------------------------------\n\n";
-
-    $option = input("Opção: ");
+    $option = input('Opção: ');
 
     switch ($option) {
-
-        case "1":
-            echo "Iniciando o servidor Apache2...\n";
-            system("sudo systemctl start apache2");
-            echo "Servidor Apache2 iniciado com sucesso!\n";
+        case '1':
+            echo 'Iniciando o servidor Apache2...' . PHP_EOL;
+            system('sudo systemctl start apache2');
+            echo 'Servidor Apache2 iniciado com sucesso!' . PHP_EOL;
             break;
 
-        case "2":
-            echo "Iniciando o servidor MariaDB...\n";
-            system("sudo systemctl start mariadb");
-            echo "Servidor MariaDB iniciado com sucesso!\n";
+        case '2':
+            echo 'Iniciando o servidor MariaDB...' . PHP_EOL;
+            system('sudo systemctl start mariadb');
+            echo 'Servidor MariaDB iniciado com sucesso!' . PHP_EOL;
             break;
 
-        case "3":
-            echo "Reiniciando o servidor Apache2...\n";
-            system("sudo systemctl restart apache2");
-            echo "Servidor Apache2 reiniciado com sucesso!\n";
+        case '3':
+            echo 'Reiniciando o servidor Apache2...' . PHP_EOL;
+            system('sudo systemctl restart apache2');
+            echo 'Servidor Apache2 reiniciado com sucesso!' . PHP_EOL;
             break;
 
-        case "4":
-            echo "Reiniciando o servidor MariaDB...\n";
-            system("sudo systemctl restart mariadb");
-            echo "Servidor MariaDB reiniciado com sucesso!\n";
+        case '4':
+            echo 'Reiniciando o servidor MariaDB...' . PHP_EOL;
+            system('sudo systemctl restart mariadb');
+            echo 'Servidor MariaDB reiniciado com sucesso!' . PHP_EOL;
             break;
 
-        case "5":
-            echo "Parando o servidor Apache2...\n";
-            system("sudo systemctl stop apache2");
-            echo "Servidor Apache2 parado com sucesso!\n";
+        case '5':
+            echo 'Parando o servidor Apache2...' . PHP_EOL;
+            system('sudo systemctl stop apache2');
+            echo 'Servidor Apache2 parado com sucesso!' . PHP_EOL;
             break;
 
-        case "6":
-            echo "Parando o servidor MariaDB...\n";
-            system("sudo systemctl stop mariadb");
-            echo "Servidor MariaDB parado com sucesso!\n";
+        case '6':
+            echo 'Parando o servidor MariaDB...' . PHP_EOL;
+            system('sudo systemctl stop mariadb');
+            echo 'Servidor MariaDB parado com sucesso!' . PHP_EOL;
             break;
 
-        case "7":
-            $nomesub = input("Digite o nome do subdomínio: ");
-            $pastaprojetos = input("Digite o nome da pasta principal dos projetos: ");
+        case '7':
+            $nomesub = input('Digite o nome do subdomínio: ');
+            $pastaprojetos = input('Digite o nome da pasta principal dos projetos: ');
             $home = getenv("HOME");
 
             system("sudo rm -f /etc/apache2/ssl/{$nomesub}.localhost.crt");
@@ -99,11 +96,11 @@ DNS.2 = www.{$nomesub}.localhost");
             system("openssl req -new -nodes -newkey rsa:2048 -keyout {$nomesub}.localhost.key -out {$nomesub}.localhost.csr -subj \"/C=BR/ST=SP/L=Sao Paulo/O={$nomesub}-Localhost-Certificates/CN={$nomesub}.localhost.local\"");
             system("openssl x509 -req -sha256 -days 1024 -in {$nomesub}.localhost.csr -CA {$nomesub}.server.pem -CAkey {$nomesub}.server.key -CAcreateserial -extfile {$nomesub}.domains.ext -out {$nomesub}.localhost.crt");
 
-            system("sudo mkdir -p /etc/apache2/ssl/");
+            system('sudo mkdir -p /etc/apache2/ssl/');
             system("sudo cp {$nomesub}.localhost.crt /etc/apache2/ssl/");
             system("sudo cp {$nomesub}.localhost.key /etc/apache2/ssl/");
 
-            echo "Excluindo subdomínios existentes...\n";
+            echo 'Excluindo subdomínios existentes...' . PHP_EOL;
             system("sudo rm -f /etc/apache2/sites-available/{$nomesub}-localhost.conf");
             system("sudo rm -f /etc/apache2/sites-enabled/{$nomesub}-localhost.conf");
 
@@ -148,34 +145,34 @@ EOF;
             system("sudo cp /tmp/missl/$nomesub/{$nomesub}-localhost.conf /etc/apache2/sites-available/");
             system("sudo ln -s /etc/apache2/sites-available/{$nomesub}-localhost.conf /etc/apache2/sites-enabled/");
 
-            system("sudo systemctl restart apache2");
+            system('sudo systemctl restart apache2');
 
-            echo "Subdomínio criado com sucesso!\n";
+            echo 'Subdomínio criado com sucesso!' . PHP_EOL;
             break;
 
-        case "8":
-            $nomesub = input("Digite o nome do subdomínio: ");
-            echo "Removendo subdomínio...\n";
+        case '8':
+            $nomesub = input('Digite o nome do subdomínio: ');
+            echo 'Removendo subdomínio...' . PHP_EOL;
             system("sudo rm -f /etc/apache2/ssl/{$nomesub}.localhost.crt");
             system("sudo rm -f /etc/apache2/ssl/{$nomesub}.localhost.key");
             system("sudo rm -f /etc/apache2/sites-available/{$nomesub}-localhost.conf");
             system("sudo rm -f /etc/apache2/sites-enabled/{$nomesub}-localhost.conf");
             system("rm -rf /tmp/missl/{$nomesub}");
-            echo "Subdomínio removido com sucesso!\n";
+            echo 'Subdomínio removido com sucesso!' . PHP_EOL;
             break;
 
-        case "9":
-            $isSnap = shell_exec("snap list | grep -q '^chromium\\s' && echo 1");
-            if (trim($isSnap) === "1") {
-                system("certutil -d sql:\$HOME/snap/chromium/current/.pki/nssdb -L");
+        case '9':
+            $isSnap = shell_exec('snap list | grep -q \'^chromium\\s\' && echo 1');
+            if (trim($isSnap) === '1') {
+                system('certutil -d sql:$HOME/snap/chromium/current/.pki/nssdb -L');
             } else {
-                system("certutil -d sql:\$HOME/.pki/nssdb -L");
+                system('certutil -d sql:$HOME/.pki/nssdb -L');
             }
             break;
 
-        case "10":
-            $nomesub = input("Digite o nome do subdomínio: ");
-            $isSnap = shell_exec("snap list | grep -q '^chromium\\s' && echo 1");
+        case '10':
+            $nomesub = input('Digite o nome do subdomínio: ');
+            $isSnap = shell_exec('snap list | grep -q \'^chromium\\s\' && echo 1');
 
             if (trim($isSnap) === "1") {
                 system("certutil -d sql:\$HOME/snap/chromium/current/.pki/nssdb -A -t \"C,,\" -n \"$nomesub\" -i /tmp/missl/$nomesub/{$nomesub}.server.pem");
@@ -184,24 +181,24 @@ EOF;
             }
             break;
 
-        case "11":
-            $nickname = input("Digite o nickname do certificado: ");
-            $isSnap = shell_exec("snap list | grep -q '^chromium\\s' && echo 1");
+        case '11':
+            $nickname = input('Digite o nickname do certificado: ');
+            $isSnap = shell_exec('snap list | grep -q \'^chromium\\s\' && echo 1');
 
-            if (trim($isSnap) === "1") {
+            if (trim($isSnap) === '1') {
                 system("certutil -d sql:\$HOME/snap/chromium/current/.pki/nssdb -D -n \"$nickname\"");
             } else {
                 system("certutil -d sql:\$HOME/.pki/nssdb -D -n \"$nickname\"");
             }
             break;
 
-        case "12":
-            echo "Saindo...\n";
+        case '12':
+            echo 'Saindo...' . PHP_EOL;
             exit(0);
 
         default:
-            echo "Opção inválida. Tente novamente.\n";
+            echo 'Opção inválida. Tente novamente.' . PHP_EOL;
     }
 
-    echo "\n";
+    echo PHP_EOL;
 }
