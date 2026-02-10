@@ -15,7 +15,7 @@ chmod +x missl
 
 Digite o número da opção que deseja e siga as orientações que estão no próprio software.
 
-## Support
+## 💙 Support
 
 - https://github.com/sponsors/mugomes
 - https://mugomes.github.io/apoie.html
