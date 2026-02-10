@@ -15,16 +15,30 @@ chmod +x missl
 
 Digite o número da opção que deseja e siga as orientações que estão no próprio software.
 
-## Informação
+## Support
 
-- [Página MiSSL](https://github.com/mugomes/missl)
+- https://github.com/sponsors/mugomes
+- https://mugomes.github.io/apoie.html
 
+## 🖥️ Sistemas Operacionais 64 bits
+
+* ✔️ Linux Ubuntu 24.04 ou superior
+
+---
+
+## 👤 Desenvolvedor
+
+**Murilo Gomes Julio**
+
+🔗 [https://mugomes.github.io](https://mugomes.github.io)
+
+📺 [https://youtube.com/@mugomesoficial](https://youtube.com/@mugomesoficial)
 
 ## License
 
 The MiSSL is provided under:
 
-[SPDX-License-Identifier: GPL-2.0-only](https://spdx.org/licenses/GPL-2.0-only.html)
+[SPDX-License-Identifier: GPL-2.0-only](https://github.com/mugomes/missl/blob/main/LICENSE)
 
 Beign under the terms of the GNU General Public License version 2 only.
 
