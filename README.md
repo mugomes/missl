@@ -22,7 +22,7 @@ Digite o número da opção que deseja e siga as orientações que estão no pr�
 
 ## 🖥️ Sistemas Operacionais 64 bits
 
-* ✔️ Linux Ubuntu 24.04 ou superior
+* Linux Ubuntu 24.04 ou superior
 
 ---
 
