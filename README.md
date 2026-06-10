@@ -1,5 +1,8 @@
 # MiSSL
 
+> [!NOTE]
+> This repository has been migrated to Codeberg, please see: https://codeberg.org/bluice/missl
+
 Crie certificados SSL para servidor Apache para testes de scripts em ambiente local no Debian/Ubuntu.
 
 ## Documentação
