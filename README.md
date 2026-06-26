@@ -29,7 +29,7 @@ Digite o número da opção que deseja e siga as orientações que estão no pr�
 - MariaDB
 - OpenSSL
 - libnss3-tools (certutil)
-- sudo com permissões administrativas
+- Comando sudo ativo para permissões administrativas
 - Chromium (Snap ou APT)
 
 ### Para executar via código-fonte
