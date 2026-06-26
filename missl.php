@@ -2,7 +2,7 @@
 # Copyright (C) 2025-2026 Murilo Gomes Julio
 # SPDX-License-Identifier: GPL-2.0-only
 
-# Site: https://mugomes.github.io
+# Site: https://www.bluice.com.br
 
 function input(string $msg): string {
     echo $msg;
@@ -11,10 +11,10 @@ function input(string $msg): string {
 
 while (true) {
     echo 'Script desenvolvido por Murilo Gomes' . PHP_EOL;
-    echo 'Site: https://mugomes.github.io' . PHP_EOL . PHP_EOL;
-    echo 'Apoie: https://mugomes.github.io/apoie.html' . PHP_EOL . PHP_EOL;
+    echo 'Site: https://www.bluice.com.br' . PHP_EOL . PHP_EOL;
+    echo 'Apoie: https://github.com/sponsors/bluiceoficial' . PHP_EOL . PHP_EOL;
 
-    echo '-------------------------------- MiSSL --------------------------------' . PHP_EOL;
+    echo '-------------------------------- MiSSL v3.0.2 --------------------------------' . PHP_EOL;
     echo 'Selecione uma opção:' . PHP_EOL;
     echo '1. Iniciar o servidor Apache2' . PHP_EOL;
     echo '2. Iniciar o servidor MariaDB' . PHP_EOL . PHP_EOL;
@@ -24,9 +24,9 @@ while (true) {
     echo '6. Parar o servidor MariaDB' . PHP_EOL . PHP_EOL;
     echo '7. Criar um subdomínio' . PHP_EOL;
     echo '8. Remover subdomínio' . PHP_EOL . PHP_EOL;
-    echo '9. Listar Certificados do Chrome/Chromium' . PHP_EOL;
-    echo '10. Ativar SSL no Chrome/Chromium' . PHP_EOL;
-    echo '11. Remover SSL no Chrome/Chromium' . PHP_EOL . PHP_EOL;
+    echo '9. Listar Certificados do Chromium' . PHP_EOL;
+    echo '10. Ativar SSL no Chromium' . PHP_EOL;
+    echo '11. Remover SSL no Chromium' . PHP_EOL . PHP_EOL;
     echo '12. Sair' . PHP_EOL;
     echo '-------------------------------- /MiSSL --------------------------------' . PHP_EOL . PHP_EOL;
 
@@ -164,8 +164,14 @@ EOF;
         case '9':
             $isSnap = shell_exec('snap list | grep -q \'^chromium\\s\' && echo 1');
             if (trim($isSnap) === '1') {
+                if (!file_exists(getenv('HOME') . '/snap/chromium/current/.pki/nssdb/')) {
+                    mkdir(getenv('HOME') . '/snap/chromium/current/.pki/nssdb/', 0755, true);
+                }
                 system('certutil -d sql:$HOME/snap/chromium/current/.pki/nssdb -L');
             } else {
+                if (!file_exists(getenv('HOME') . '/.pki/nssdb')) {
+                    mkdir(getenv('HOME') . '/.pki/nssdb', 0755, true);
+                }
                 system('certutil -d sql:$HOME/.pki/nssdb -L');
             }
             break;
@@ -175,8 +181,14 @@ EOF;
             $isSnap = shell_exec('snap list | grep -q \'^chromium\\s\' && echo 1');
 
             if (trim($isSnap) === "1") {
+                if (!file_exists(getenv('HOME') . '/snap/chromium/current/.pki/nssdb/')) {
+                    mkdir(getenv('HOME') . '/snap/chromium/current/.pki/nssdb/', 0755, true);
+                }
                 system("certutil -d sql:\$HOME/snap/chromium/current/.pki/nssdb -A -t \"C,,\" -n \"$nomesub\" -i /tmp/missl/$nomesub/{$nomesub}.server.pem");
             } else {
+                if (!file_exists(getenv('HOME') . '/.pki/nssdb')) {
+                    mkdir(getenv('HOME') . '/.pki/nssdb', 0755, true);
+                }
                 system("certutil -d sql:\$HOME/.pki/nssdb -A -t \"C,,\" -n \"$nomesub\" -i /tmp/missl/$nomesub/{$nomesub}.server.pem");
             }
             break;
