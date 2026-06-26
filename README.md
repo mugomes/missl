@@ -1,8 +1,5 @@
 # MiSSL
 
-> [!NOTE]
-> This repository has been migrated to Codeberg, please see: https://codeberg.org/bluice/missl
-
 Crie certificados SSL para servidor Apache para testes de scripts em ambiente local no Debian/Ubuntu.
 
 ## Documentação
@@ -20,12 +17,24 @@ Digite o número da opção que deseja e siga as orientações que estão no pr�
 
 ## 💙 Support
 
-- https://github.com/sponsors/mugomes
-- https://mugomes.github.io/apoie.html
+- https://livepix.gg/bluice/assinatura
+- https://apoia.se/canalbluice
 
-## 🖥️ Sistemas Operacionais 64 bits
+## Requisitos
 
-* Linux Ubuntu 24.04 ou superior
+### 🖥️ Sistemas Operacionais 64 bits
+
+- Linux (com systemd)
+- Apache2
+- MariaDB
+- OpenSSL
+- libnss3-tools (certutil)
+- sudo com permissões administrativas
+- Chromium (Snap ou APT)
+
+### Para executar via código-fonte
+
+- PHP CLI (8.4 ou superior)
 
 ---
 
@@ -33,15 +42,15 @@ Digite o número da opção que deseja e siga as orientações que estão no pr�
 
 **Murilo Gomes Julio**
 
-🔗 [https://mugomes.github.io](https://mugomes.github.io)
+🔗 [https://www.bluice.com.br](https://www.bluice.com.br)
 
-📺 [https://youtube.com/@mugomesoficial](https://youtube.com/@mugomesoficial)
+📺 [https://youtube.com/@bluiceoficial](https://youtube.com/@bluiceoficial)
 
 ## License
 
 The MiSSL is provided under:
 
-[SPDX-License-Identifier: GPL-2.0-only](https://github.com/mugomes/missl/blob/main/LICENSE)
+[SPDX-License-Identifier: GPL-2.0-only](https://github.com/bluiceoficial/missl/blob/main/LICENSE)
 
 Beign under the terms of the GNU General Public License version 2 only.
 
